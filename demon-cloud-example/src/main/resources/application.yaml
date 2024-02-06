@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: demon-cloud-example
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  redis:
+    host: 10.110.96.76
+    port: 7379
+    password: aep@2023
+
+
+server:
+  port: 10001
+  undertow:
+    threads:
+      io: 16 # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      worker: 256 #阻塞任务线程池, 当执行类似servlet请求阻塞IO操作, undertow会从这个线程池中取得线程,它的值设置取决于系统线程执行任务的阻塞系数，默认值是IO线程数*8
+    buffer-size: 1024 # 每块buffer的空间大小,越小的空间被利用越充分
+    direct-buffers: true # 是否分配的直接内存(NIO直接分配的堆外内存)
+
